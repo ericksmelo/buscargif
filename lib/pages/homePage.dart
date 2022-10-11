@@ -4,8 +4,6 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:share_plus/share_plus.dart';
 import 'package:transparent_image/transparent_image.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'ad_helper.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -21,29 +19,8 @@ class _HomePageState extends State<HomePage> {
       print(map);
     });
 
-    //_initGoogleMobileAds();
-
-    // BannerAd(
-    //   adUnitId: AdHelper.bannerAdUnitId,
-    //   request: AdRequest(),
-    //   size: AdSize.banner,
-    //   listener: BannerAdListener(
-    //     onAdLoaded: (ad) {
-    //       setState(() {
-    //         _bannerAd = ad as BannerAd;
-    //       });
-    //     },
-    //     onAdFailedToLoad: (ad, err) {
-    //       print('Failed to load a banner ad: ${err.message}');
-    //       ad.dispose();
-    //     },
-    //   ),
-    // ).load();
-
     super.initState();
   }
-
-  BannerAd? _bannerAd;
 
   String _search = "";
   int _offset = 0;
@@ -69,8 +46,6 @@ class _HomePageState extends State<HomePage> {
       return data.length + 1;
     }
   }
-
-  // _onShare method:
 
   @override
   Widget build(BuildContext context) {
@@ -126,15 +101,6 @@ class _HomePageState extends State<HomePage> {
                   }
                 }),
           ),
-          if (_bannerAd != null)
-            Align(
-              alignment: Alignment.topCenter,
-              child: Container(
-                width: _bannerAd!.size.width.toDouble(),
-                height: _bannerAd!.size.height.toDouble(),
-                child: AdWidget(ad: _bannerAd!),
-              ),
-            ),
         ],
       ),
     );
@@ -205,17 +171,5 @@ class _HomePageState extends State<HomePage> {
         }
       },
     );
-  }
-
-  @override
-  void dispose() {
-    _bannerAd?.dispose();
-
-    super.dispose();
-  }
-
-  //Inicializando o Adbmob
-  Future<InitializationStatus> _initGoogleMobileAds() {
-    return MobileAds.instance.initialize();
   }
 }

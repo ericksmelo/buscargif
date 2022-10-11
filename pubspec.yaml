@@ -29,7 +29,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  google_mobile_ads: ^2.0.1
   share_plus: ^4.5.3
   transparent_image: ^2.0.0
   image_gallery_saver: '^1.7.1'
